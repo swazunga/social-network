@@ -1,0 +1,23 @@
+{
+  "name": "social-network",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swazunga/social-network.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swazunga/social-network/issues"
+  },
+  "homepage": "https://github.com/swazunga/social-network#readme",
+  "dependencies": {
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.3.6"
+  }
+}
