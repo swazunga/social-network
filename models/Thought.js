@@ -1,16 +1,16 @@
-const { Schema, Model, Types } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
+const dateFormat = require("../utils/dateFormat");
 
 const ReactionSchema = new Schema(
   {
-    reactionID: {
+    reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
-      //user Mongoose's ObjectId data type
-      //Default value is set to a ne ObjectId
     },
     reactionBody: {
       type: String,
       required: true,
+      minlength: 1,
       maxlength: 280,
     },
     username: {
@@ -35,6 +35,7 @@ const ThoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
+      minlength: 1,
       maxlength: 280,
     },
     createdAt: {
@@ -45,11 +46,8 @@ const ThoughtSchema = new Schema(
     username: {
       type: String,
       required: true,
-      // This needs to be the User that's logged in (created this thought)
     },
-    reactions: {
-      //Array of nested documents created with the reactionSchema
-    },
+    reactions: [ReactionSchema],
   },
   {
     toJSON: {
@@ -62,3 +60,6 @@ const ThoughtSchema = new Schema(
 ThoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
+
+const Thought = model("Thought", ThoughtSchema);
+module.exports = Thought;
